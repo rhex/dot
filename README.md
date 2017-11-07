@@ -8,6 +8,12 @@ vim usage
 
 :PlugInstall
 
+youcompleteme:
+brew install CMake
+cd ~/.vim/bundle/YouCompleteMe
+./install.sh --clang-completer
+./install.sh --gocode-completer
+
 mru.vim: ``:MRU``
 
 vim grep: 
