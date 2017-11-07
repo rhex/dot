@@ -1,0 +1,4 @@
+alias rm='rm -i'
+alias gst='git status'
+alias vi='/usr/local/bin/vim'
+alias cdd='cd ~/dev'

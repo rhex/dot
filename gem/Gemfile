@@ -1,0 +1,23 @@
+source :rubygems
+
+gem 'simplecov', '~>0.7.1'
+gem 'ZenTest', '~>4.8.3'
+gem 'spork', '~>0.9.2'
+gem 'tconsole', '~>1.2.8'
+gem 'pry', '~>0.9.12.2'
+gem 'pry-debugger', '~>0.2.2'
+gem 'pry-stack_explorer'
+#used by ruby-debugger-vim
+gem 'debugger-xml'
+gem 'pry-remote'
+#jekyll related
+#rdiscount (2.0.7.2)
+#redcarpet (2.2.2)
+#RedCloth (4.2.9)
+gem 'pandoc-ruby'
+#for markdown
+gem 'redcarpet'
+gem 'pygments.rb'
+#beautify outputs
+gem 'awesome_print'
+gem 'jekyll'
