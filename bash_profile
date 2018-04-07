@@ -14,5 +14,6 @@ function winname {
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;35m\]\w\[\033[00m\]\$ '
-export GOPATH=$HOME/dev/gopath
+# this is actually the default address of go
+export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
