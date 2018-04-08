@@ -11,6 +11,8 @@ set hlsearch
 set incsearch
 set showcmd
 set nocompatible
+set colorcolumn=120
+highlight ColorColumn ctermbg=gray
 
 autocmd FileType ruby setlocal et sta shiftwidth=2 softtabstop=2
 autocmd FileType sh setlocal et sta shiftwidth=2 softtabstop=2

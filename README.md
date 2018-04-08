@@ -16,7 +16,9 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 youcompleteme:
 brew install CMake
 cd ~/.vim/bundle/YouCompleteMe
+# for c
 ./install.sh --clang-completer
+# for go
 ./install.sh --gocode-completer
 
 mru.vim: ``:MRU``
