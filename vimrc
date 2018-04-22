@@ -20,9 +20,6 @@ autocmd FileType html setlocal et sta shiftwidth=2 softtabstop=2
 autocmd BufNewFile,BufRead *.html.erb set filetype=html.eruby
 autocmd FileType html.eruby setlocal et sta shiftwidth=2 softtabstop=2
 filetype plugin indent on
-let mapleader=';'
-map <leader>e :NERDTree<CR>
-map <leader>t :Tlist<CR>
 
 call plug#begin('~/.vim/plugged')
 
@@ -34,6 +31,55 @@ Plug 'tpope/vim-surround'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'Valloric/YouCompleteMe'
 Plug 'Raimondi/delimitMate'
+"Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'vim-syntastic/syntastic'
+Plug 'majutsushi/tagbar'
+Plug 'mileszs/ack.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'bronson/vim-trailing-whitespace'
+Plug 'luochen1990/rainbow'
+Plug 'easymotion/vim-easymotion'
+Plug 'unblevable/quick-scope'
+"Plug 'benmills/vimux'
 
 " Initialize plugin system
 call plug#end()
+
+" nerdtree
+let mapleader=';'
+map <leader>e :NERDTree<CR>
+
+" syntastic settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_go_checkers = ['go', 'govet']
+"let g:syntastic_go_checkers = ['go', 'golint']
+
+" tagbar
+nnoremap <silent> <F9> :TagbarToggle<CR>
+"let g:tagbar_autofocus = 1
+
+
+" ack.vim
+let g:ackprg = 'ag --nogroup --nocolor --column'
+"map <c-u> :Ack<space>
+
+" rainbow, for highlight parathesis
+let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
+
+" ctrlp
+
+" vim-go
+let g:go_fmt_command = "goimports"
+"let g:go_auto_sameids = 1
+
+" quick-scope
+let g:qs_enable=0
+nmap <leader>q <plug>(QuickScopeToggle)
+xmap <leader>q <plug>(QuickScopeToggle)
