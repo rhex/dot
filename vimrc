@@ -40,7 +40,8 @@ Plug 'bronson/vim-trailing-whitespace'
 Plug 'luochen1990/rainbow'
 Plug 'easymotion/vim-easymotion'
 Plug 'unblevable/quick-scope'
-"Plug 'benmills/vimux'
+Plug 'benmills/vimux'
+Plug 'flazz/vim-colorschemes'
 
 " Initialize plugin system
 call plug#end()
@@ -58,8 +59,8 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_go_checkers = ['go', 'govet']
-"let g:syntastic_go_checkers = ['go', 'golint']
+let g:syntastic_go_checkers = ['go']
+"let g:syntastic_go_checkers = ['go', 'golint', 'govet']
 
 " tagbar
 nnoremap <silent> <F9> :TagbarToggle<CR>
@@ -76,10 +77,20 @@ let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
 " ctrlp
 
 " vim-go
-let g:go_fmt_command = "goimports"
+"let g:go_fmt_command = "goimports"
 "let g:go_auto_sameids = 1
 
 " quick-scope
 let g:qs_enable=0
 nmap <leader>q <plug>(QuickScopeToggle)
 xmap <leader>q <plug>(QuickScopeToggle)
+
+" color
+" colorscheme molokai
+"
+set background=dark
+" set background=light
+" colorscheme solarized
+"
+" colorscheme dracula
+colorscheme gruvbox
