@@ -2,3 +2,8 @@ alias rm='rm -i'
 alias gst='git status'
 alias vi='/usr/local/bin/vim'
 alias cdd='cd ~/dev'
+
+none() {
+#  docker images | grep none | awk '{print $3}' | xargs docker rmi -f
+  docker rmi -f `docker images | grep none | awk '{print $3}'`
+}

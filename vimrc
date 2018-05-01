@@ -42,6 +42,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'unblevable/quick-scope'
 Plug 'benmills/vimux'
 Plug 'flazz/vim-colorschemes'
+Plug 'cespare/vim-toml'
 
 " Initialize plugin system
 call plug#end()

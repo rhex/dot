@@ -17,3 +17,5 @@ export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;35m\]\w\[\033[00m\]\$ '
 # this is actually the default address of go
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
+
+[ -r "$HOME/.smartcd_config" ] && ( [ -n $BASH_VERSION ] || [ -n $ZSH_VERSION ] ) && source ~/.smartcd_config
