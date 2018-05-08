@@ -47,8 +47,9 @@ Plug 'cespare/vim-toml'
 " Initialize plugin system
 call plug#end()
 
-" nerdtree
 let mapleader=';'
+
+" nerdtree
 map <leader>e :NERDTree<CR>
 
 " syntastic settings
@@ -76,10 +77,19 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
 
 " ctrlp
+"let g:ctrlp_map='<c-p>'
+let g:ctrlp_cmd = 'CtrlPMRU'
 
 " vim-go
 "let g:go_fmt_command = "goimports"
 "let g:go_auto_sameids = 1
+let g:go_auto_type_info = 1
+autocmd FileType go nmap <leader>r  <Plug>(go-referrers)
+autocmd FileType go nmap <leader>i  <Plug>(go-info)
+autocmd FileType go nmap <leader>d  <Plug>(go-describe)
+map <leader>s :GoSameIds<CR>
+map <leader>c :GoSameIdsClear<CR>
+"autocmd FileType go nmap <leader>c  <Plug>(go-same-ids-clear)
 
 " quick-scope
 let g:qs_enable=0
