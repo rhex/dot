@@ -12,11 +12,14 @@ set incsearch
 set showcmd
 set nocompatible
 set colorcolumn=120
+" set ignorecase
+set smartcase
 highlight ColorColumn ctermbg=gray
 
 autocmd FileType ruby setlocal et sta shiftwidth=2 softtabstop=2
 autocmd FileType sh setlocal et sta shiftwidth=2 softtabstop=2
 autocmd FileType html setlocal et sta shiftwidth=2 softtabstop=2
+autocmd FileType json setlocal et sta shiftwidth=2 softtabstop=2
 autocmd BufNewFile,BufRead *.html.erb set filetype=html.eruby
 autocmd FileType html.eruby setlocal et sta shiftwidth=2 softtabstop=2
 filetype plugin indent on
@@ -43,11 +46,16 @@ Plug 'unblevable/quick-scope'
 Plug 'benmills/vimux'
 Plug 'flazz/vim-colorschemes'
 Plug 'cespare/vim-toml'
+Plug 'elzr/vim-json'
 
 " Initialize plugin system
 call plug#end()
 
 let mapleader=';'
+
+" fmt json
+" map <leader>f :execute '%!python -m json.tool' | w<CR>
+map <leader>j :%!jq '.'<CR>
 
 " nerdtree
 map <leader>e :NERDTree<CR>
@@ -87,8 +95,9 @@ let g:go_auto_type_info = 1
 autocmd FileType go nmap <leader>r  <Plug>(go-referrers)
 autocmd FileType go nmap <leader>i  <Plug>(go-info)
 autocmd FileType go nmap <leader>d  <Plug>(go-describe)
+autocmd FileType go nmap <leader>c  <Plug>(go-callers)
 map <leader>s :GoSameIds<CR>
-map <leader>c :GoSameIdsClear<CR>
+map <leader>l :GoSameIdsClear<CR>
 "autocmd FileType go nmap <leader>c  <Plug>(go-same-ids-clear)
 
 " quick-scope
@@ -105,3 +114,6 @@ set background=dark
 "
 " colorscheme dracula
 colorscheme gruvbox
+
+" vim-json
+let g:vim_json_syntax_conceal = 0
