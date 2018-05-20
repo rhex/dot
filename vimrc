@@ -47,6 +47,8 @@ Plug 'benmills/vimux'
 Plug 'flazz/vim-colorschemes'
 Plug 'cespare/vim-toml'
 Plug 'elzr/vim-json'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'dyng/ctrlsf.vim'
 
 " Initialize plugin system
 call plug#end()
@@ -71,6 +73,7 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_go_checkers = ['govet']
 "let g:syntastic_go_checkers = ['go', 'golint', 'govet']
+map <leader>r :SyntasticReset<CR>
 
 " tagbar
 nnoremap <silent> <F9> :TagbarToggle<CR>
@@ -87,18 +90,6 @@ let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
 " ctrlp
 "let g:ctrlp_map='<c-p>'
 let g:ctrlp_cmd = 'CtrlPMRU'
-
-" vim-go
-"let g:go_fmt_command = "goimports"
-"let g:go_auto_sameids = 1
-let g:go_auto_type_info = 1
-autocmd FileType go nmap <leader>r  <Plug>(go-referrers)
-autocmd FileType go nmap <leader>i  <Plug>(go-info)
-autocmd FileType go nmap <leader>d  <Plug>(go-describe)
-autocmd FileType go nmap <leader>c  <Plug>(go-callers)
-map <leader>s :GoSameIds<CR>
-map <leader>l :GoSameIdsClear<CR>
-"autocmd FileType go nmap <leader>c  <Plug>(go-same-ids-clear)
 
 " quick-scope
 let g:qs_enable=0
@@ -117,3 +108,63 @@ colorscheme gruvbox
 
 " vim-json
 let g:vim_json_syntax_conceal = 0
+
+"" 'easymotion/vim-easymotion'
+map <leader><leader>h <plug>(easymotion-linebackward)
+map <leader><leader>l <plug>(easymotion-lineforward)
+
+" 'terryma/vim-multiple-cursors'
+if !has('gui_running')
+  map "in Insert mode, type Ctrl+v Alt+n here" <A-n>
+endif
+let g:multi_cursor_use_default_mapping=0
+" Default mapping
+let g:multi_cursor_start_word_key      = '<C-n>'
+let g:multi_cursor_select_all_word_key = '<C-m>'
+let g:multi_cursor_start_key           = 'g<C-n>'
+let g:multi_cursor_select_all_key      = 'g<A-n>'
+let g:multi_cursor_next_key            = '<C-n>'
+let g:multi_cursor_prev_key            = '<C-p>'
+let g:multi_cursor_skip_key            = '<C-x>'
+let g:multi_cursor_quit_key            = '<Esc>'
+map <leader>l <plug>(easymotion-lineforward)
+map <leader>m :MultipleCursorsFind<Space>
+"nnoremap <silent> <M-j> :MultipleCursorsFind <C-R>/<CR>
+"vnoremap <silent> <M-j> :MultipleCursorsFind <C-R>/<CR>
+
+"" 'dyng/ctrlsf.vim'
+nnoremap <C-f> :CtrlSF<Space>
+let g:ctrlsf_ignore_dir=["vendor"]
+let g:ctrlsf_auto_close=0
+" let g:ctrlsf_default_root='cwd'
+nmap     <C-F>f <Plug>CtrlSFPrompt
+vmap     <C-F>f <Plug>CtrlSFVwordPath
+vmap     <C-F>F <Plug>CtrlSFVwordExec
+nmap     <C-F>n <Plug>CtrlSFCwordPath
+nmap     <C-F>p <Plug>CtrlSFPwordPath
+nnoremap <C-F>o :CtrlSFOpen<CR>
+nnoremap <C-F>t :CtrlSFToggle<CR>
+inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
+
+
+
+" vim-go
+"let g:go_fmt_command = "goimports"
+"let g:go_auto_sameids = 1
+let g:go_auto_type_info = 1
+autocmd FileType go nmap <leader>rf  <Plug>(go-referrers)
+autocmd FileType go nmap <leader>i  <Plug>(go-info)
+autocmd FileType go nmap <leader>d  <Plug>(go-describe)
+map <leader>s :GoSameIds<CR>
+map <leader>c :GoSameIdsClear<CR>
+map <leader>i :GoImports<CR>
+"autocmd FileType go nmap <leader>c  <Plug>(go-same-ids-clear)
+au FileType go nmap <Leader>ds <Plug>(go-def-split)
+au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+au FileType go nmap <Leader>gd <Plug>(go-doc)
+au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
+au FileType go nmap <Leader>s <Plug>(go-implements)
+au FileType go nmap <Leader>i <Plug>(go-info)
+au FileType go nmap <Leader>e <Plug>(go-rename)
