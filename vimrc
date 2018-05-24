@@ -14,6 +14,10 @@ set nocompatible
 set colorcolumn=120
 " set ignorecase
 set smartcase
+
+" let g:loaded_python_provider = 1
+let g:python_host_prog  = '/usr/bin/python'
+let g:python3_host_prog = '/usr/bin/python3'
 highlight ColorColumn ctermbg=gray
 
 autocmd FileType ruby setlocal et sta shiftwidth=2 softtabstop=2
