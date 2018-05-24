@@ -47,8 +47,9 @@ Plug 'benmills/vimux'
 Plug 'flazz/vim-colorschemes'
 Plug 'cespare/vim-toml'
 Plug 'elzr/vim-json'
-Plug 'terryma/vim-multiple-cursors'
+" Plug 'terryma/vim-multiple-cursors'
 Plug 'dyng/ctrlsf.vim'
+Plug 'SirVer/ultisnips'
 
 " Initialize plugin system
 call plug#end()
@@ -114,21 +115,20 @@ map <leader><leader>h <plug>(easymotion-linebackward)
 map <leader><leader>l <plug>(easymotion-lineforward)
 
 " 'terryma/vim-multiple-cursors'
-if !has('gui_running')
-  map "in Insert mode, type Ctrl+v Alt+n here" <A-n>
-endif
-let g:multi_cursor_use_default_mapping=0
-" Default mapping
-let g:multi_cursor_start_word_key      = '<C-n>'
-let g:multi_cursor_select_all_word_key = '<C-m>'
-let g:multi_cursor_start_key           = 'g<C-n>'
-let g:multi_cursor_select_all_key      = 'g<A-n>'
-let g:multi_cursor_next_key            = '<C-n>'
-let g:multi_cursor_prev_key            = '<C-p>'
-let g:multi_cursor_skip_key            = '<C-x>'
-let g:multi_cursor_quit_key            = '<Esc>'
-map <leader>l <plug>(easymotion-lineforward)
-map <leader>m :MultipleCursorsFind<Space>
+" if !has('gui_running')
+"   map "in Insert mode, type Ctrl+v Alt+n here" <A-n>
+" endif
+" let g:multi_cursor_use_default_mapping=0
+" " Default mapping
+" let g:multi_cursor_start_word_key      = '<C-n>'
+" let g:multi_cursor_select_all_word_key = '<C-m>'
+" let g:multi_cursor_start_key           = 'g<C-n>'
+" let g:multi_cursor_select_all_key      = 'g<A-n>'
+" let g:multi_cursor_next_key            = '<C-n>'
+" let g:multi_cursor_prev_key            = '<C-p>'
+" let g:multi_cursor_skip_key            = '<C-x>'
+" let g:multi_cursor_quit_key            = '<Esc>'
+" map <leader>m :MultipleCursorsFind<Space>
 "nnoremap <silent> <M-j> :MultipleCursorsFind <C-R>/<CR>
 "vnoremap <silent> <M-j> :MultipleCursorsFind <C-R>/<CR>
 
@@ -167,4 +167,19 @@ au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
 au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
 au FileType go nmap <Leader>s <Plug>(go-implements)
 au FileType go nmap <Leader>i <Plug>(go-info)
-au FileType go nmap <Leader>e <Plug>(go-rename)
+" au FileType go nmap <Leader>e <Plug>(go-rename)
+
+autocmd Filetype go command! -bang A call go#alternate#Switch(<bang>0, 'edit')
+autocmd Filetype go command! -bang AV call go#alternate#Switch(<bang>0, 'vsplit')
+autocmd Filetype go command! -bang AS call go#alternate#Switch(<bang>0, 'split')
+autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
+
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+"
+" " better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>""
