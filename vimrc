@@ -11,9 +11,11 @@ set hlsearch
 set incsearch
 set showcmd
 set nocompatible
+"set clipboard=unnamedplus
 set colorcolumn=120
 " set ignorecase
 set smartcase
+"set mouse=r
 
 " let g:loaded_python_provider = 1
 let g:python_host_prog  = '/usr/bin/python'
@@ -54,6 +56,10 @@ Plug 'elzr/vim-json'
 " Plug 'terryma/vim-multiple-cursors'
 Plug 'dyng/ctrlsf.vim'
 Plug 'SirVer/ultisnips'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+Plug 'ianva/vim-youdao-translater'
 
 " Initialize plugin system
 call plug#end()
@@ -78,6 +84,7 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_go_checkers = ['govet']
 "let g:syntastic_go_checkers = ['go', 'golint', 'govet']
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 map <leader>r :SyntasticReset<CR>
 
 " tagbar
@@ -150,19 +157,22 @@ nnoremap <C-F>o :CtrlSFOpen<CR>
 nnoremap <C-F>t :CtrlSFToggle<CR>
 inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
 
+if has('gui_running')
+    let g:airline_powerline_fonts = 1
+endif
 
 
 " vim-go
 "let g:go_fmt_command = "goimports"
 "let g:go_auto_sameids = 1
 let g:go_auto_type_info = 1
-autocmd FileType go nmap <leader>rf  <Plug>(go-referrers)
-autocmd FileType go nmap <leader>i  <Plug>(go-info)
-autocmd FileType go nmap <leader>d  <Plug>(go-describe)
 map <leader>s :GoSameIds<CR>
 map <leader>c :GoSameIdsClear<CR>
 map <leader>i :GoImports<CR>
 "autocmd FileType go nmap <leader>c  <Plug>(go-same-ids-clear)
+au FileType go nmap <leader>rf  <Plug>(go-referrers)
+au FileType go nmap <leader>i  <Plug>(go-info)
+au FileType go nmap <leader>d  <Plug>(go-describe)
 au FileType go nmap <Leader>ds <Plug>(go-def-split)
 au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
 au FileType go nmap <Leader>dt <Plug>(go-def-tab)
@@ -187,3 +197,29 @@ let g:SuperTabDefaultCompletionType = '<C-n>'
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>""
+
+" youdao
+vnoremap <silent> <C-Y> :<C-u>Ydv<CR>
+nnoremap <silent> <C-Y> :<C-u>Ydc<CR>
+noremap <leader>yd :<C-u>Yde<CR>
+
+" Clear search highlights
+map <leader>c :nohlsearch<cr>
+
+function! Multiple_cursors_before()
+    let b:deoplete_disable_auto_complete = 1
+endfunction
+
+
+function! Multiple_cursors_after()
+    let b:deoplete_disable_auto_complete = 0
+endfunction
+
+if has('nvim')
+    let g:python_host_prog = '/usr/bin/python2'
+    let g:python3_host_prog = '/usr/bin/python3'
+endif
+
+if has('mouse')
+    set mouse=a
+endif
