@@ -15,3 +15,6 @@ ln -sf ~/dotfiles/gitignore_global ~/.gitignore_global
 sudo ln -s /usr/bin/vim /usr/local/bin/vim
 
 # ln -sf ~/dotfiles/pryrc ~/.pryrc
+# This is for neovim.
+ln -s ../.vim ~/.config/nvim
+ln -s ../.vimrc ~/.vim/init.vim
