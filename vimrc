@@ -60,7 +60,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'ianva/vim-youdao-translater'
-
+Plug 'pangloss/vim-javascript'
 " Initialize plugin system
 call plug#end()
 
@@ -223,3 +223,6 @@ endif
 if has('mouse')
     set mouse=a
 endif
+
+" vim-markdown
+let g:vim_markdown_folding_disabled = 1
