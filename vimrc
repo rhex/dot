@@ -84,7 +84,7 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_go_checkers = ['govet']
 "let g:syntastic_go_checkers = ['go', 'golint', 'govet']
-let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+"let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 map <leader>r :SyntasticReset<CR>
 
 " tagbar
@@ -179,7 +179,7 @@ au FileType go nmap <Leader>dt <Plug>(go-def-tab)
 au FileType go nmap <Leader>gd <Plug>(go-doc)
 au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
 au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
-au FileType go nmap <Leader>s <Plug>(go-implements)
+"au FileType go nmap <Leader>s <Plug>(go-implements)
 au FileType go nmap <Leader>i <Plug>(go-info)
 " au FileType go nmap <Leader>e <Plug>(go-rename)
 
