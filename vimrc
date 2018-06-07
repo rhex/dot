@@ -221,7 +221,7 @@ if has('nvim')
 endif
 
 if has('mouse')
-    set mouse=a
+""    set mouse=a
 endif
 
 " vim-markdown
