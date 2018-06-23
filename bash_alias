@@ -5,5 +5,7 @@ alias cdd='cd ~/dev'
 
 none() {
 #  docker images | grep none | awk '{print $3}' | xargs docker rmi -f
+  docker rm `docker ps -aq`
   docker rmi -f `docker images | grep none | awk '{print $3}'`
 }
+
