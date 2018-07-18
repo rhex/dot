@@ -26,6 +26,9 @@ autocmd FileType ruby setlocal et sta shiftwidth=2 softtabstop=2
 autocmd FileType sh setlocal et sta shiftwidth=2 softtabstop=2
 autocmd FileType html setlocal et sta shiftwidth=2 softtabstop=2
 autocmd FileType json setlocal et sta shiftwidth=2 softtabstop=2
+autocmd FileType yaml setlocal et sta shiftwidth=2 softtabstop=2
+autocmd FileType yml setlocal et sta shiftwidth=2 softtabstop=2
+autocmd FileType toml setlocal et sta shiftwidth=2 softtabstop=2
 autocmd BufNewFile,BufRead *.html.erb set filetype=html.eruby
 autocmd FileType html.eruby setlocal et sta shiftwidth=2 softtabstop=2
 filetype plugin indent on
@@ -45,6 +48,7 @@ Plug 'vim-syntastic/syntastic'
 Plug 'majutsushi/tagbar'
 Plug 'mileszs/ack.vim'
 Plug 'vim-airline/vim-airline'
+Plug 'pearofducks/ansible-vim'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'luochen1990/rainbow'
 Plug 'easymotion/vim-easymotion'
@@ -52,6 +56,7 @@ Plug 'unblevable/quick-scope'
 Plug 'benmills/vimux'
 Plug 'flazz/vim-colorschemes'
 Plug 'cespare/vim-toml'
+Plug 'stephpy/vim-yaml'
 Plug 'elzr/vim-json'
 " Plug 'terryma/vim-multiple-cursors'
 Plug 'dyng/ctrlsf.vim'
@@ -226,3 +231,6 @@ endif
 
 " vim-markdown
 let g:vim_markdown_folding_disabled = 1
+
+" ansible-vim
+let g:ansible_yamlKeyName = 'yamlKey'
