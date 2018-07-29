@@ -66,6 +66,7 @@ Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'ianva/vim-youdao-translater'
 Plug 'pangloss/vim-javascript'
+Plug 'kana/vim-fakeclip'
 " Initialize plugin system
 call plug#end()
 
@@ -236,3 +237,11 @@ let g:vim_markdown_folding_disabled = 1
 
 " ansible-vim
 let g:ansible_yamlKeyName = 'yamlKey'
+
+" windows support
+" copy (write) highlighted text to .vimbuffer
+"vmap <C-c> y:new " ~/.vimbuffer<CR>VGp:x<CR> \| :!cat ~/.vimbuffer \| clip.exe <CR><CR>
+" paste from buffer
+"map <C-v> :r ~/.vimbuffer<CR>
+
+set clipboard=unnamedplus
