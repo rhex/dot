@@ -30,6 +30,7 @@ autocmd FileType yaml setlocal et sta shiftwidth=2 softtabstop=2
 autocmd FileType yml setlocal et sta shiftwidth=2 softtabstop=2
 autocmd FileType toml setlocal et sta shiftwidth=2 softtabstop=2
 autocmd BufNewFile,BufRead *.html.erb set filetype=html.eruby
+"au BufNewFile,BufRead Jenkinsfile setf groovy
 autocmd FileType html.eruby setlocal et sta shiftwidth=2 softtabstop=2
 filetype plugin indent on
 
@@ -37,6 +38,7 @@ call plug#begin('~/.vim/plugged')
 
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'sheerun/vim-polyglot'
+Plug 'martinda/Jenkinsfile-vim-syntax'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'tpope/vim-fugitive'
