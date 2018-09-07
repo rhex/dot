@@ -36,6 +36,7 @@ filetype plugin indent on
 call plug#begin('~/.vim/plugged')
 
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
+Plug 'sheerun/vim-polyglot'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'tpope/vim-fugitive'
@@ -48,25 +49,26 @@ Plug 'vim-syntastic/syntastic'
 Plug 'majutsushi/tagbar'
 Plug 'mileszs/ack.vim'
 Plug 'vim-airline/vim-airline'
-Plug 'pearofducks/ansible-vim'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'luochen1990/rainbow'
 Plug 'easymotion/vim-easymotion'
 Plug 'unblevable/quick-scope'
 Plug 'benmills/vimux'
 Plug 'flazz/vim-colorschemes'
-Plug 'cespare/vim-toml'
-Plug 'stephpy/vim-yaml'
-Plug 'elzr/vim-json'
 " Plug 'terryma/vim-multiple-cursors'
 Plug 'dyng/ctrlsf.vim'
 " Plug 'SirVer/ultisnips'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
 Plug 'ianva/vim-youdao-translater'
-Plug 'pangloss/vim-javascript'
 Plug 'kana/vim-fakeclip'
+" included by vim-polyglot
+"Plug 'plasticboy/vim-markdown'
+"Plug 'pangloss/vim-javascript'
+"Plug 'pearofducks/ansible-vim'
+"Plug 'cespare/vim-toml'
+"Plug 'stephpy/vim-yaml'
+"Plug 'elzr/vim-json'
 " Initialize plugin system
 call plug#end()
 
