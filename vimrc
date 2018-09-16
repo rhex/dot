@@ -16,6 +16,7 @@ set colorcolumn=120
 " set ignorecase
 set smartcase
 "set mouse=r
+set encoding=utf-8
 
 " let g:loaded_python_provider = 1
 let g:python_host_prog  = '/usr/bin/python'
@@ -64,6 +65,9 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'godlygeek/tabular'
 Plug 'ianva/vim-youdao-translater'
 Plug 'kana/vim-fakeclip'
+Plug 'davidhalter/jedi-vim'
+Plug 'Yggdroot/indentLine'
+Plug 'tell-k/vim-autopep8'
 " included by vim-polyglot
 "Plug 'plasticboy/vim-markdown'
 "Plug 'pangloss/vim-javascript'
@@ -249,3 +253,11 @@ let g:ansible_yamlKeyName = 'yamlKey'
 "map <C-v> :r ~/.vimbuffer<CR>
 
 set clipboard=unnamedplus
+
+" indentline
+" :IndentLinesToggle
+let g:indentLine_char='┆'
+let g:indentLine_enabled = 1
+
+" autopep8
+let g:autopep8_disable_show_diff=1
