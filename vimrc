@@ -261,3 +261,8 @@ let g:indentLine_enabled = 1
 
 " autopep8
 let g:autopep8_disable_show_diff=1
+
+" ycm
+let g:ycm_add_preview_to_completeopt = 0
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_autoclose_preview_window_after_completion = 0
