@@ -94,11 +94,16 @@ set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 1
 let g:syntastic_go_checkers = ['govet']
 "let g:syntastic_go_checkers = ['go', 'golint', 'govet']
 "let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+let g:syntastic_python_checkers = ['flake8']
+"let g:syntastic_python_checkers = ['pylint']
+let g:syntastic_python_pylint_args = '-E'
+"let g:syntastic_python_checkers = ['']
+"let g:syntastic_python_checkers = ['flake8', 'pyflakes', 'pylint']
 map <leader>r :SyntasticReset<CR>
 
 " tagbar
@@ -207,6 +212,8 @@ autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
 " let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 " let g:SuperTabDefaultCompletionType = '<C-n>'
 let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_server_python_interpreter='/usr/bin/python2'
+let g:ycm_python_binary_path = '/usr/bin/python'
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 "
 " " better key bindings for UltiSnipsExpandTrigger
@@ -266,3 +273,23 @@ let g:autopep8_disable_show_diff=1
 let g:ycm_add_preview_to_completeopt = 0
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_autoclose_preview_window_after_completion = 0
+
+" jedi
+"let g:jedi#force_py_version=2
+" Auto add head info
+" .py file into add header
+function HeaderPython()
+    call setline(1, "#!/usr/bin/env python")
+    call append(1, "# -*- coding: utf-8 -*-")
+    normal G
+    normal o
+endf
+autocmd bufnewfile *.py call HeaderPython()
+
+map hd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+map yd :YcmCompleter GetDoc<CR>
+map yr :YcmCompleter GoToReferences<CR>
+
+" https://github.com/mindriot101/vim-yapf#why-you-may-not-need-this-plugin
+autocmd FileType python nnoremap <leader>y :0,$!yapf<Cr><C-o>
+" autocmd BufWritePre *.py 0,$!yapf
