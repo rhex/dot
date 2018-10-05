@@ -38,10 +38,10 @@ filetype plugin indent on
 call plug#begin('~/.vim/plugged')
 
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
-Plug 'sheerun/vim-polyglot'
+Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+" Plug 'sheerun/vim-polyglot'
 Plug 'martinda/Jenkinsfile-vim-syntax'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -99,7 +99,9 @@ let g:syntastic_check_on_wq = 1
 let g:syntastic_go_checkers = ['govet']
 "let g:syntastic_go_checkers = ['go', 'golint', 'govet']
 "let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+let g:pymode_lint_ignore = "E501,W"
 let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_python_flake8_args = "--max-line-length=160"
 "let g:syntastic_python_checkers = ['pylint']
 let g:syntastic_python_pylint_args = '-E'
 "let g:syntastic_python_checkers = ['']
@@ -212,8 +214,8 @@ autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
 " let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 " let g:SuperTabDefaultCompletionType = '<C-n>'
 let g:ycm_autoclose_preview_window_after_completion=1
-let g:ycm_server_python_interpreter='/usr/bin/python2'
-let g:ycm_python_binary_path = '/usr/bin/python'
+"let g:ycm_server_python_interpreter='/usr/bin/python2'
+"let g:ycm_python_binary_path = '/usr/bin/python'
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 "
 " " better key bindings for UltiSnipsExpandTrigger
