@@ -31,6 +31,7 @@ autocmd FileType yaml setlocal et sta shiftwidth=2 softtabstop=2
 autocmd FileType yml setlocal et sta shiftwidth=2 softtabstop=2
 autocmd FileType toml setlocal et sta shiftwidth=2 softtabstop=2
 autocmd BufNewFile,BufRead *.html.erb set filetype=html.eruby
+autocmd BufNewFile,BufRead *.es6 set filetype=javascript
 "au BufNewFile,BufRead Jenkinsfile setf groovy
 autocmd FileType html.eruby setlocal et sta shiftwidth=2 softtabstop=2
 filetype plugin indent on
@@ -106,6 +107,9 @@ let g:syntastic_python_flake8_args = "--max-line-length=160"
 let g:syntastic_python_pylint_args = '-E'
 "let g:syntastic_python_checkers = ['']
 "let g:syntastic_python_checkers = ['flake8', 'pyflakes', 'pylint']
+"
+" let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_checkers = ['jshint']
 map <leader>r :SyntasticReset<CR>
 
 " tagbar
@@ -275,6 +279,9 @@ let g:autopep8_disable_show_diff=1
 let g:ycm_add_preview_to_completeopt = 0
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_autoclose_preview_window_after_completion = 0
+let g:ycm_min_num_of_chars_for_completion = 2
+let g:ycm_global_ycm_extra_conf='~/dotfiles/.ycm_extra_conf.py'
+" let g:ycm_key_invoke_completion = ['<C-Space>']
 
 " jedi
 "let g:jedi#force_py_version=2
