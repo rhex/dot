@@ -40,7 +40,7 @@ call plug#begin('~/.vim/plugged')
 
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
-" Plug 'sheerun/vim-polyglot'
+Plug 'sheerun/vim-polyglot'
 Plug 'martinda/Jenkinsfile-vim-syntax'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'tpope/vim-fugitive'
@@ -69,6 +69,7 @@ Plug 'kana/vim-fakeclip'
 Plug 'davidhalter/jedi-vim'
 Plug 'Yggdroot/indentLine'
 Plug 'tell-k/vim-autopep8'
+Plug 'editorconfig/editorconfig-vim'
 " included by vim-polyglot
 "Plug 'plasticboy/vim-markdown'
 "Plug 'pangloss/vim-javascript'
@@ -108,8 +109,8 @@ let g:syntastic_python_pylint_args = '-E'
 "let g:syntastic_python_checkers = ['']
 "let g:syntastic_python_checkers = ['flake8', 'pyflakes', 'pylint']
 "
-" let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_javascript_checkers = ['eslint']
+" let g:syntastic_javascript_checkers = ['jshint']
 map <leader>r :SyntasticReset<CR>
 
 " tagbar
@@ -302,3 +303,5 @@ map yr :YcmCompleter GoToReferences<CR>
 " https://github.com/mindriot101/vim-yapf#why-you-may-not-need-this-plugin
 autocmd FileType python nnoremap <leader>y :0,$!yapf<Cr><C-o>
 " autocmd BufWritePre *.py 0,$!yapf
+
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']

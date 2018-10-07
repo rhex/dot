@@ -20,3 +20,5 @@ export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;35m\]\w\[\033[00m\]\$ '
 #export PATH=$PATH:$GOPATH/bin
 
 [ -r "$HOME/.smartcd_config" ] && ( [ -n $BASH_VERSION ] || [ -n $ZSH_VERSION ] ) && source ~/.smartcd_config
+export JAVA_HOME=:~/software/jdk-10.0.2
+export PATH=$PATH:$JAVA_HOME/bin
