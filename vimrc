@@ -17,6 +17,9 @@ set colorcolumn=120
 set smartcase
 "set mouse=r
 set encoding=utf-8
+" set foldmethod=syntax
+set foldmethod=indent
+set foldlevelstart=99
 
 " let g:loaded_python_provider = 1
 let g:python_host_prog  = '/usr/bin/python'
@@ -43,12 +46,14 @@ Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 Plug 'sheerun/vim-polyglot'
 Plug 'martinda/Jenkinsfile-vim-syntax'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'jistr/vim-nerdtree-tabs'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'Valloric/YouCompleteMe'
 Plug 'Raimondi/delimitMate'
-"Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'vim-syntastic/syntastic'
 Plug 'majutsushi/tagbar'
 Plug 'mileszs/ack.vim'
@@ -59,7 +64,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'unblevable/quick-scope'
 Plug 'benmills/vimux'
 Plug 'flazz/vim-colorschemes'
-" Plug 'terryma/vim-multiple-cursors'
+Plug 'terryma/vim-multiple-cursors'
 Plug 'dyng/ctrlsf.vim'
 " Plug 'SirVer/ultisnips'
 Plug 'christoomey/vim-tmux-navigator'
@@ -73,6 +78,8 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-commentary'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'justinmk/vim-sneak'
+Plug 'JamshedVesuna/vim-markdown-preview'
+Plug 'myusuf3/numbers.vim'
 " included by vim-polyglot
 "Plug 'plasticboy/vim-markdown'
 "Plug 'pangloss/vim-javascript'
@@ -147,6 +154,8 @@ set background=dark
 " colorscheme dracula
 colorscheme gruvbox
 
+" let python_highlight_all=1
+
 " vim-json
 let g:vim_json_syntax_conceal = 0
 
@@ -161,7 +170,7 @@ map <leader><leader>l <plug>(easymotion-lineforward)
 " let g:multi_cursor_use_default_mapping=0
 " " Default mapping
 " let g:multi_cursor_start_word_key      = '<C-n>'
-" let g:multi_cursor_select_all_word_key = '<C-m>'
+let g:multi_cursor_select_all_word_key = 'g<C-m>'
 " let g:multi_cursor_start_key           = 'g<C-n>'
 " let g:multi_cursor_select_all_key      = 'g<A-n>'
 " let g:multi_cursor_next_key            = '<C-n>'
@@ -169,8 +178,8 @@ map <leader><leader>l <plug>(easymotion-lineforward)
 " let g:multi_cursor_skip_key            = '<C-x>'
 " let g:multi_cursor_quit_key            = '<Esc>'
 " map <leader>m :MultipleCursorsFind<Space>
-"nnoremap <silent> <M-j> :MultipleCursorsFind <C-R>/<CR>
-"vnoremap <silent> <M-j> :MultipleCursorsFind <C-R>/<CR>
+" nnoremap <silent> <M-j> :MultipleCursorsFind <C-R>/<CR>
+" vnoremap <silent> <M-j> :MultipleCursorsFind <C-R>/<CR>
 
 "" 'dyng/ctrlsf.vim'
 nnoremap <C-f> :CtrlSF<Space>
@@ -308,3 +317,30 @@ autocmd FileType python nnoremap <leader>y :0,$!yapf<Cr><C-o>
 " autocmd BufWritePre *.py 0,$!yapf
 
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+
+" markdown-preview
+let vim_markdown_preview_hotkey='<C-m>'
+" let vim_markdown_preview_browser='Google Chrome'
+let vim_markdown_preview_github=1
+" let vim_markdown_preview_use_xdg_open=1
+
+" folding setup
+nnoremap <space> za
+vnoremap <space> zf
+
+" vim-number
+nnoremap <F3> :NumbersToggle<CR>
+nnoremap <F4> :NumbersOnOff<CR>
+
+" justinmk/vim-sneak
+let g:sneak#label = 1
+
+"python with virtualenv support
+py << EOF
+import os
+import sys
+if 'VIRTUAL_ENV' in os.environ:
+  project_base_dir = os.environ['VIRTUAL_ENV']
+  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+  execfile(activate_this, dict(__file__=activate_this))
+EOF
