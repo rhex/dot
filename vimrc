@@ -17,9 +17,13 @@ set colorcolumn=120
 set smartcase
 "set mouse=r
 set encoding=utf-8
+set wildmenu
 " set foldmethod=syntax
 set foldmethod=indent
 set foldlevelstart=99
+" set ignorecase
+set cursorline
+set cursorcolumn
 
 " let g:loaded_python_provider = 1
 let g:python_host_prog  = '/usr/bin/python'
@@ -37,6 +41,7 @@ autocmd BufNewFile,BufRead *.html.erb set filetype=html.eruby
 autocmd BufNewFile,BufRead *.es6 set filetype=javascript
 "au BufNewFile,BufRead Jenkinsfile setf groovy
 autocmd FileType html.eruby setlocal et sta shiftwidth=2 softtabstop=2
+autocmd Filetype python set foldmethod=indent
 filetype plugin indent on
 
 call plug#begin('~/.vim/plugged')
@@ -55,6 +60,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'Valloric/YouCompleteMe'
 Plug 'Raimondi/delimitMate'
 Plug 'vim-syntastic/syntastic'
+" Plug 'w0rp/ale'
 Plug 'majutsushi/tagbar'
 Plug 'mileszs/ack.vim'
 Plug 'vim-airline/vim-airline'
@@ -80,6 +86,8 @@ Plug 'michaeljsmith/vim-indent-object'
 Plug 'justinmk/vim-sneak'
 Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'myusuf3/numbers.vim'
+Plug 'Chiel92/vim-autoformat'
+" Plug 'octol/vim-cpp-enhanced-highlight'
 " included by vim-polyglot
 "Plug 'plasticboy/vim-markdown'
 "Plug 'pangloss/vim-javascript'
@@ -119,9 +127,30 @@ let g:syntastic_python_pylint_args = '-E'
 "let g:syntastic_python_checkers = ['']
 "let g:syntastic_python_checkers = ['flake8', 'pyflakes', 'pylint']
 "
+let g:syntastic_python_pylint_args = '-E'
+"
 let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_cpp_cpplint_exec = "cpplint"
+let g:syntastic_cpp_checkers = ['cpplint']
+
+" let g:syntastic_cpp_checkers = ['gcc']
+" let g:syntastic_cpp_compiler = 'gcc'
+" let g:syntastic_cpp_compiler_options = '-std=c++14'
 " let g:syntastic_javascript_checkers = ['jshint']
 map <leader>r :SyntasticReset<CR>
+
+
+" ale settings
+" nmap sp <Plug>(ale_previous_wrap)
+" nmap sn <Plug>(ale_next_wrap)
+" nmap <Leader>s :ALEToggle<CR>
+" nmap <Leader>d :ALEDetail<CR>
+
+" let g:ale_linters = {
+" \   'python': ['pylint'],
+" \   'javascript': ['eslint'],
+" \}
+
 
 " tagbar
 nnoremap <silent> <F9> :TagbarToggle<CR>
@@ -234,6 +263,10 @@ let g:ycm_autoclose_preview_window_after_completion=1
 "let g:ycm_server_python_interpreter='/usr/bin/python2'
 "let g:ycm_python_binary_path = '/usr/bin/python'
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+map hd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+map yd :YcmCompleter GetDoc<CR>
+map yr :YcmCompleter GoToReferences<CR>
+
 "
 " " better key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger = "<tab>"
@@ -295,6 +328,7 @@ let g:ycm_autoclose_preview_window_after_completion = 0
 let g:ycm_min_num_of_chars_for_completion = 2
 let g:ycm_global_ycm_extra_conf='~/dotfiles/.ycm_extra_conf.py'
 " let g:ycm_key_invoke_completion = ['<C-Space>']
+let g:ycm_show_diagnostics_ui = 0
 
 " jedi
 "let g:jedi#force_py_version=2
@@ -307,10 +341,6 @@ function HeaderPython()
     normal o
 endf
 autocmd bufnewfile *.py call HeaderPython()
-
-map hd :YcmCompleter GoToDefinitionElseDeclaration<CR>
-map yd :YcmCompleter GetDoc<CR>
-map yr :YcmCompleter GoToReferences<CR>
 
 " https://github.com/mindriot101/vim-yapf#why-you-may-not-need-this-plugin
 autocmd FileType python nnoremap <leader>y :0,$!yapf<Cr><C-o>
@@ -328,9 +358,48 @@ let vim_markdown_preview_github=1
 nnoremap <space> za
 vnoremap <space> zf
 
+" vim-autoformat
+" :CurrentFormatter
+noremap <F8> :Autoformat<CR>
+let g:autoformat_verbosemode=1
+" au BufWrite * :Autoformat
+let g:formatters_python = ['yapf']
+" let g:formatters_javascript = ['jsbeautify_javascript']
+" let g:formatdef_allman = '"astyle --style=allman --pad-oper"'
+let g:formatdef_my = '"astyle --style=attach --pad-oper --lineend=linux"'
+let g:formatters_cpp = ['my']
+
+
 " vim-number
 nnoremap <F3> :NumbersToggle<CR>
 nnoremap <F4> :NumbersOnOff<CR>
+map <F5> :call CompileRunGcc()<CR>
+func! CompileRunGcc()
+        exec "w"
+        if &filetype == 'c'
+                exec "!g++ % -o %<"
+                exec "!time ./%<"
+        elseif &filetype == 'cpp'
+                exec "!g++ % -o %<"
+                exec "!time ./%<"
+        elseif &filetype == 'java'
+                exec "!javac %"
+                exec "!time java %<"
+        elseif &filetype == 'sh'
+                :!time bash %
+        elseif &filetype == 'python'
+                exec "!clear"
+                exec "!time python3 %"
+        elseif &filetype == 'html'
+                exec "!firefox % &"
+        elseif &filetype == 'go'
+                " exec "!go build %<"
+                exec "!time go run %"
+        elseif &filetype == 'mkd'
+                exec "!~/.vim/markdown.pl % > %.html &"
+                exec "!firefox %.html &"
+        endif
+    endfunc
 
 " justinmk/vim-sneak
 let g:sneak#label = 1
