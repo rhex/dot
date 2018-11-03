@@ -11,7 +11,9 @@ set hlsearch
 set incsearch
 set showcmd
 set nocompatible
-"set clipboard=unnamedplus
+" set clipboard=unnamedplus
+" set clipboard=unnamed
+set clipboard^=unnamed,unnamedplus
 set colorcolumn=120
 " set ignorecase
 set smartcase
@@ -22,8 +24,8 @@ set wildmenu
 set foldmethod=indent
 set foldlevelstart=99
 " set ignorecase
-set cursorline
-set cursorcolumn
+" set cursorline
+" set cursorcolumn
 
 " let g:loaded_python_provider = 1
 let g:python_host_prog  = '/usr/bin/python'
@@ -130,8 +132,8 @@ let g:syntastic_python_pylint_args = '-E'
 let g:syntastic_python_pylint_args = '-E'
 "
 let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_cpp_cpplint_exec = "cpplint"
-let g:syntastic_cpp_checkers = ['cpplint']
+" let g:syntastic_cpp_cpplint_exec = "cpplint"
+" let g:syntastic_cpp_checkers = ['cpplint']
 
 " let g:syntastic_cpp_checkers = ['gcc']
 " let g:syntastic_cpp_compiler = 'gcc'
@@ -246,7 +248,7 @@ au FileType go nmap <Leader>dt <Plug>(go-def-tab)
 au FileType go nmap <Leader>gd <Plug>(go-doc)
 au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
 au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
-"au FileType go nmap <Leader>s <Plug>(go-implements)
+au FileType go nmap <Leader>gi <Plug>(go-implements)
 au FileType go nmap <Leader>i <Plug>(go-info)
 " au FileType go nmap <Leader>e <Plug>(go-rename)
 
@@ -311,8 +313,6 @@ let g:ansible_yamlKeyName = 'yamlKey'
 " paste from buffer
 "map <C-v> :r ~/.vimbuffer<CR>
 
-set clipboard=unnamedplus
-
 " indentline
 " :IndentLinesToggle
 let g:indentLine_char='┆'
@@ -368,6 +368,7 @@ let g:formatters_python = ['yapf']
 " let g:formatdef_allman = '"astyle --style=allman --pad-oper"'
 let g:formatdef_my = '"astyle --style=attach --pad-oper --lineend=linux"'
 let g:formatters_cpp = ['my']
+let g:formatters_c = ['my']
 
 
 " vim-number
