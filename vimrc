@@ -265,7 +265,7 @@ let g:ycm_autoclose_preview_window_after_completion=1
 "let g:ycm_server_python_interpreter='/usr/bin/python2'
 "let g:ycm_python_binary_path = '/usr/bin/python'
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
-map hd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+map <leader>hd  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 map yd :YcmCompleter GetDoc<CR>
 map yr :YcmCompleter GoToReferences<CR>
 
