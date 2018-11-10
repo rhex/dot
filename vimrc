@@ -1,6 +1,7 @@
 set laststatus=2
 set noshowmode
 syntax on
+syntax enable
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
@@ -50,7 +51,7 @@ call plug#begin('~/.vim/plugged')
 
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
-Plug 'sheerun/vim-polyglot'
+" Plug 'sheerun/vim-polyglot'
 Plug 'martinda/Jenkinsfile-vim-syntax'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'jistr/vim-nerdtree-tabs'
@@ -175,6 +176,7 @@ let g:qs_enable=0
 nmap <leader>q <plug>(QuickScopeToggle)
 xmap <leader>q <plug>(QuickScopeToggle)
 
+" theme
 " color
 " colorscheme molokai
 "
@@ -264,10 +266,9 @@ autocmd Filetype go command! -bang AT call go#alternate#Switch(<bang>0, 'tabe')
 let g:ycm_autoclose_preview_window_after_completion=1
 "let g:ycm_server_python_interpreter='/usr/bin/python2'
 "let g:ycm_python_binary_path = '/usr/bin/python'
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 map <leader>hd  :YcmCompleter GoToDefinitionElseDeclaration<CR>
-map yd :YcmCompleter GetDoc<CR>
-map yr :YcmCompleter GoToReferences<CR>
+map <leader>yr  :YcmCompleter GoToReferences<CR>
+map <leader>dc  :YcmCompleter GetDoc<CR>
 
 "
 " " better key bindings for UltiSnipsExpandTrigger
@@ -331,7 +332,10 @@ let g:ycm_global_ycm_extra_conf='~/dotfiles/.ycm_extra_conf.py'
 let g:ycm_show_diagnostics_ui = 0
 
 " jedi
-"let g:jedi#force_py_version=2
+" let g:jedi#force_py_version=2
+let g:jedi#force_py_version = '3'
+" set omnifunc=jedi#completions
+" :verbose JediDebugInfo
 " Auto add head info
 " .py file into add header
 function HeaderPython()
@@ -363,7 +367,8 @@ vnoremap <space> zf
 noremap <F8> :Autoformat<CR>
 let g:autoformat_verbosemode=1
 " au BufWrite * :Autoformat
-let g:formatters_python = ['yapf']
+let g:formatters_python = ['autopep8']
+" let g:formatters_python = ['yapf']
 " let g:formatters_javascript = ['jsbeautify_javascript']
 " let g:formatdef_allman = '"astyle --style=allman --pad-oper"'
 let g:formatdef_my = '"astyle --style=attach --pad-oper --lineend=linux"'
@@ -404,6 +409,10 @@ func! CompileRunGcc()
 
 " justinmk/vim-sneak
 let g:sneak#label = 1
+
+" ployglot
+" let g:polyglot_disabled = ['markdown']
+let g:vim_markdown_override_foldtext = 0
 
 " python with virtualenv support
 " py << EOF

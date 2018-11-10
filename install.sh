@@ -9,9 +9,10 @@ fi
 ln -sf ~/dotfiles/vimrc ~/.vimrc
 
 ln -sf ~/dotfiles/bash_alias ~/.bash_alias
-ln -sf ~/dotfiles/bash_profile ~/.bash_profile
+# ln -sf ~/dotfiles/bash_profile ~/.bash_profile
 ln -sf ~/dotfiles/tmux.conf ~/.tmux.conf
 ln -sf ~/dotfiles/gitignore_global ~/.gitignore_global
+ln -sf ~/dotfiles/bash_it.sh ~/.bash_it.sh
 #sudo ln -s /usr/bin/vim /usr/local/bin/vim
 
 # ln -sf ~/dotfiles/pryrc ~/.pryrc

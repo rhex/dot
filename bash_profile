@@ -14,7 +14,9 @@ function winname {
 
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
-export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;35m\]\w\[\033[00m\]\$ '
+# export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;35m\]\w\[\033[00m\]\$ '
+export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;35m\]\W\[\033[00m\]\$ '
+# export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:$ '
 # this is actually the default address of go
 #export GOPATH=$HOME/go
 #export PATH=$PATH:$GOPATH/bin
@@ -30,3 +32,7 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+
+export HISTCONTROL=ignoreboth
+
+[[ -s "$HOME/.bash_it.sh" ]] && source "$HOME/.bash_it.sh"
