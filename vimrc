@@ -1,7 +1,6 @@
 set laststatus=2
 set noshowmode
-syntax on
-syntax enable
+syntax on syntax enable
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
@@ -90,7 +89,12 @@ Plug 'justinmk/vim-sneak'
 Plug 'JamshedVesuna/vim-markdown-preview'
 Plug 'myusuf3/numbers.vim'
 Plug 'Chiel92/vim-autoformat'
+Plug 'tpope/vim-obsession'
+Plug 'fisadev/vim-isort'
 " Plug 'octol/vim-cpp-enhanced-highlight'
+" polyglot related fix
+" plugins included in vim-polyglot, but seems not work
+Plug 'aklt/plantuml-syntax'
 " included by vim-polyglot
 "Plug 'plasticboy/vim-markdown'
 "Plug 'pangloss/vim-javascript'
@@ -124,7 +128,7 @@ let g:syntastic_go_checkers = ['govet']
 "let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 let g:pymode_lint_ignore = "E501,W"
 let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_python_flake8_args = "--max-line-length=160"
+let g:syntastic_python_flake8_args = "--max-line-length=130"
 "let g:syntastic_python_checkers = ['pylint']
 let g:syntastic_python_pylint_args = '-E'
 "let g:syntastic_python_checkers = ['']
@@ -338,13 +342,13 @@ let g:jedi#force_py_version = '3'
 " :verbose JediDebugInfo
 " Auto add head info
 " .py file into add header
-function HeaderPython()
-    call setline(1, "#!/usr/bin/env python")
-    call append(1, "# -*- coding: utf-8 -*-")
-    normal G
-    normal o
-endf
-autocmd bufnewfile *.py call HeaderPython()
+" function HeaderPython()
+"     call setline(1, "#!/usr/bin/env python")
+"     call append(1, "# -*- coding: utf-8 -*-")
+"     normal G
+"     normal o
+" endf
+" autocmd bufnewfile *.py call HeaderPython()
 
 " https://github.com/mindriot101/vim-yapf#why-you-may-not-need-this-plugin
 autocmd FileType python nnoremap <leader>y :0,$!yapf<Cr><C-o>
@@ -367,13 +371,19 @@ vnoremap <space> zf
 noremap <F8> :Autoformat<CR>
 let g:autoformat_verbosemode=1
 " au BufWrite * :Autoformat
-let g:formatters_python = ['autopep8']
+let g:formatdef_my_python = '"autopep8 - --max-line-length=120"'
+let g:formatters_python = ['my_python']
 " let g:formatters_python = ['yapf']
 " let g:formatters_javascript = ['jsbeautify_javascript']
 " let g:formatdef_allman = '"astyle --style=allman --pad-oper"'
 let g:formatdef_my = '"astyle --style=attach --pad-oper --lineend=linux"'
 let g:formatters_cpp = ['my']
 let g:formatters_c = ['my']
+
+" vim-isort
+" :Isort
+" let g:vim_isort_map = '<C-i>'
+let g:vim_isort_python_version = 'python3'
 
 
 " vim-number
