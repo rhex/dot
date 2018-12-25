@@ -13,15 +13,15 @@ set showcmd
 set nocompatible
 " set clipboard=unnamedplus
 " set clipboard=unnamed
-set clipboard^=unnamed,unnamedplus
+" set clipboard^=unnamed,unnamedplus
 set colorcolumn=120
 " set ignorecase
 set smartcase
 "set mouse=r
 set encoding=utf-8
 set wildmenu
-" set foldmethod=syntax
-set foldmethod=indent
+set foldmethod=syntax
+" set foldmethod=indent
 set foldlevelstart=99
 " set ignorecase
 " set cursorline
@@ -105,7 +105,7 @@ Plug 'aklt/plantuml-syntax'
 " Initialize plugin system
 call plug#end()
 
-let mapleader=';'
+let mapleader=' '
 
 " fmt json
 " map <leader>f :execute '%!python -m json.tool' | w<CR>
@@ -128,7 +128,7 @@ let g:syntastic_go_checkers = ['govet']
 "let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
 let g:pymode_lint_ignore = "E501,W"
 let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_python_flake8_args = "--max-line-length=130"
+let g:syntastic_python_flake8_args = "--max-line-length=160"
 "let g:syntastic_python_checkers = ['pylint']
 let g:syntastic_python_pylint_args = '-E'
 "let g:syntastic_python_checkers = ['']
@@ -244,6 +244,9 @@ let g:go_auto_type_info = 1
 map <leader>s :GoSameIds<CR>
 map <leader>c :GoSameIdsClear<CR>
 map <leader>i :GoImports<CR>
+" :GoReferrers
+" :GoCallers
+" :GoCallees
 "autocmd FileType go nmap <leader>c  <Plug>(go-same-ids-clear)
 au FileType go nmap <leader>rf  <Plug>(go-referrers)
 au FileType go nmap <leader>i  <Plug>(go-info)
@@ -363,15 +366,15 @@ let vim_markdown_preview_github=1
 " let vim_markdown_preview_use_xdg_open=1
 
 " folding setup
-nnoremap <space> za
-vnoremap <space> zf
+" nnoremap <space> za
+" vnoremap <space> zf
 
 " vim-autoformat
 " :CurrentFormatter
 noremap <F8> :Autoformat<CR>
 let g:autoformat_verbosemode=1
 " au BufWrite * :Autoformat
-let g:formatdef_my_python = '"autopep8 - --max-line-length=120"'
+let g:formatdef_my_python = '"autopep8 - --max-line-length=120 --experimental"'
 let g:formatters_python = ['my_python']
 " let g:formatters_python = ['yapf']
 " let g:formatters_javascript = ['jsbeautify_javascript']
@@ -383,7 +386,7 @@ let g:formatters_c = ['my']
 " vim-isort
 " :Isort
 " let g:vim_isort_map = '<C-i>'
-let g:vim_isort_python_version = 'python3'
+" let g:vim_isort_python_version = 'python3'
 
 
 " vim-number
@@ -423,6 +426,8 @@ let g:sneak#label = 1
 " ployglot
 " let g:polyglot_disabled = ['markdown']
 let g:vim_markdown_override_foldtext = 0
+
+set pastetoggle=<F7>
 
 " python with virtualenv support
 " py << EOF
