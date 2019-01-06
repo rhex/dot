@@ -13,7 +13,7 @@ set showcmd
 set nocompatible
 " set clipboard=unnamedplus
 " set clipboard=unnamed
-" set clipboard^=unnamed,unnamedplus
+set clipboard^=unnamed,unnamedplus
 set colorcolumn=120
 " set ignorecase
 set smartcase
@@ -39,6 +39,8 @@ autocmd FileType json setlocal et sta shiftwidth=2 softtabstop=2
 autocmd FileType yaml setlocal et sta shiftwidth=2 softtabstop=2
 autocmd FileType yml setlocal et sta shiftwidth=2 softtabstop=2
 autocmd FileType toml setlocal et sta shiftwidth=2 softtabstop=2
+autocmd FileType javascript setlocal et sta shiftwidth=2 softtabstop=2
+autocmd FileType js setlocal et sta shiftwidth=2 softtabstop=2
 autocmd BufNewFile,BufRead *.html.erb set filetype=html.eruby
 autocmd BufNewFile,BufRead *.es6 set filetype=javascript
 "au BufNewFile,BufRead Jenkinsfile setf groovy
