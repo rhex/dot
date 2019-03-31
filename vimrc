@@ -41,6 +41,7 @@ autocmd FileType yml setlocal et sta shiftwidth=2 softtabstop=2
 autocmd FileType toml setlocal et sta shiftwidth=2 softtabstop=2
 autocmd FileType javascript setlocal et sta shiftwidth=2 softtabstop=2
 autocmd FileType js setlocal et sta shiftwidth=2 softtabstop=2
+autocmd FileType ts setlocal et sta shiftwidth=2 softtabstop=2
 autocmd BufNewFile,BufRead *.html.erb set filetype=html.eruby
 autocmd BufNewFile,BufRead *.es6 set filetype=javascript
 "au BufNewFile,BufRead Jenkinsfile setf groovy
@@ -52,7 +53,7 @@ call plug#begin('~/.vim/plugged')
 
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
-" Plug 'sheerun/vim-polyglot'
+Plug 'sheerun/vim-polyglot'
 Plug 'martinda/Jenkinsfile-vim-syntax'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'jistr/vim-nerdtree-tabs'
@@ -63,8 +64,8 @@ Plug 'tpope/vim-repeat'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'Valloric/YouCompleteMe'
 Plug 'Raimondi/delimitMate'
-Plug 'vim-syntastic/syntastic'
-" Plug 'w0rp/ale'
+" Plug 'vim-syntastic/syntastic'
+Plug 'w0rp/ale'
 Plug 'majutsushi/tagbar'
 Plug 'mileszs/ack.vim'
 Plug 'vim-airline/vim-airline'
@@ -93,6 +94,7 @@ Plug 'myusuf3/numbers.vim'
 Plug 'Chiel92/vim-autoformat'
 Plug 'tpope/vim-obsession'
 Plug 'fisadev/vim-isort'
+" Plug 'Quramy/tsuquyomi'  " ts needed
 " Plug 'octol/vim-cpp-enhanced-highlight'
 " polyglot related fix
 " plugins included in vim-polyglot, but seems not work
@@ -117,9 +119,9 @@ map <leader>j :%!jq '.'<CR>
 map <leader>e :NERDTree<CR>
 
 " syntastic settings
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -135,6 +137,7 @@ let g:syntastic_python_flake8_args = "--max-line-length=160"
 let g:syntastic_python_pylint_args = '-E'
 "let g:syntastic_python_checkers = ['']
 "let g:syntastic_python_checkers = ['flake8', 'pyflakes', 'pylint']
+let g:loaded_syntastic_java_javac_checker = 1
 "
 let g:syntastic_python_pylint_args = '-E'
 "
@@ -150,16 +153,30 @@ map <leader>r :SyntasticReset<CR>
 
 
 " ale settings
-" nmap sp <Plug>(ale_previous_wrap)
-" nmap sn <Plug>(ale_next_wrap)
-" nmap <Leader>s :ALEToggle<CR>
-" nmap <Leader>d :ALEDetail<CR>
+" let g:ale_linters_explicit = 1
+nmap sp <Plug>(ale_previous_wrap)
+nmap sn <Plug>(ale_next_wrap)
+nmap <Leader>s :ALEToggle<CR>
+nmap <Leader>d :ALEDetail<CR>
+nmap <Leader>f :ALEFix<CR>
 
-" let g:ale_linters = {
-" \   'python': ['pylint'],
-" \   'javascript': ['eslint'],
-" \}
+let g:ale_linters = {
+\   'python': ['flake8'],
+\   'javascript': ['eslint'],
+\}
 
+let g:ale_python_flake8_options = '--max-line-length=160'
+
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['prettier', 'eslint'],
+\   'python': ['autopep8', 'isort'],
+\}
+
+" let g:ale_fix_on_save = 1
+
+let g:ale_python_autopep8_options = '--max-line-length=120 --experimental'
+" let g:ale_python_autopep8_use_global = 1
 
 " tagbar
 nnoremap <silent> <F9> :TagbarToggle<CR>
@@ -237,6 +254,7 @@ inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
 if has('gui_running')
     let g:airline_powerline_fonts = 1
 endif
+let g:airline#extensions#ale#enabled = 1
 
 
 " vim-go
@@ -426,8 +444,8 @@ func! CompileRunGcc()
 let g:sneak#label = 1
 
 " ployglot
-" let g:polyglot_disabled = ['markdown']
-let g:vim_markdown_override_foldtext = 0
+let g:polyglot_disabled = ['markdown']
+" let g:vim_markdown_override_foldtext = 0
 
 set pastetoggle=<F7>
 
